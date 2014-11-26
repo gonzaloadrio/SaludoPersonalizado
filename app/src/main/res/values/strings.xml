@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SaludoPersonalizado</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="name">nombre</string>
+    <string name="saludo">saludo</string>
+    <string name="saludoSr">Sr</string>
+    <string name="saludoSra">Sra</string>
+    <string name="showTime">verTiempo</string>
+    <string name="hello">hola</string>
+    <string name="nombre">Nombre</string>
+    <string name="etnombre">Name</string>
+    <string name="Enviar">Enviar</string>
+    <string name="mostrarFecha">Mostrar fecha?</string>
+
+</resources>
