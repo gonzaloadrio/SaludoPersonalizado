@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string-array name="saludo_array">
+        <item></item>
+        <item>Hola</item>
+        <item>Adios</item>
+    </string-array>
 
     <string name="app_name">SaludoPersonalizado</string>
     <string name="hello_world">Hello world!</string>

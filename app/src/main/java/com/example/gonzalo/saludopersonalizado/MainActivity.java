@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -29,7 +31,9 @@ public class MainActivity extends Activity {
     ScrollView scrollView;
     RadioGroup radioGroup;
 
-    RadioButton bHola, bAdios;
+
+    Spinner spinner;
+    ArrayAdapter<CharSequence> adapterSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +51,10 @@ public class MainActivity extends Activity {
         scrollView = (ScrollView) findViewById(R.id.scrollView);
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
 
-        bHola = (RadioButton) findViewById(R.id.rbHola);
-        bAdios = (RadioButton) findViewById(R.id.rbAdios);
+        spinner = (Spinner) findViewById(R.id.spinner);
+        adapterSpinner = ArrayAdapter.createFromResource(this, R.array.saludo_array, android.R.layout.simple_spinner_item);
+        adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapterSpinner);
 
         cbVerFecha.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,9 +76,9 @@ public class MainActivity extends Activity {
                     String genero = "";
                     String saludo = "";
 
-                    if (bHola.isChecked()) {
+                    if (spinner.getSelectedItem().toString().equals("Hola")) {
                         saludo = "Hola ";
-                    } else if (bAdios.isChecked()) {
+                    } else if (spinner.getSelectedItem().toString().equals("Adios")) {
                         saludo = "Adios ";
 
                     }
@@ -104,27 +110,6 @@ public class MainActivity extends Activity {
 
                     AlertDialog dialog = builder.create();
                     dialog.show();
-                } else if (!bHola.isChecked() && !bAdios.isChecked()) {
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                    builder.setTitle("Error");
-                    builder.setMessage("Elige Hola o Adios");
-                    builder.setPositiveButton("HOLA", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            bHola.setChecked(true);
-                        }
-                    });
-                    builder.setNegativeButton("ADIOS", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            bAdios.setChecked(true);
-                        }
-                    });
-
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-
                 } else {
                     Toast.makeText(getApplicationContext(), "Nombre Vacio", Toast.LENGTH_SHORT).show();
                 }
