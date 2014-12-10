@@ -17,7 +17,6 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 
-
 public class MainActivity extends Activity {
 
     EditText etNombre;
@@ -29,6 +28,8 @@ public class MainActivity extends Activity {
     CheckBox cbVerFecha;
     ScrollView scrollView;
     RadioGroup radioGroup;
+
+    RadioButton bHola, bAdios;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,9 @@ public class MainActivity extends Activity {
         scrollView = (ScrollView) findViewById(R.id.scrollView);
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
 
+        bHola = (RadioButton) findViewById(R.id.rbHola);
+        bAdios = (RadioButton) findViewById(R.id.rbAdios);
+
         cbVerFecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,27 +66,36 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 if (!etNombre.getText().toString().equals("")) {
                     String fecha = ": " + datePicker.getDayOfMonth() + " - " + datePicker.getMonth() + " - " + datePicker.getYear();
-                    String hora = " -> " + timePicker.getCurrentHour() + ":" +timePicker.getCurrentMinute();
+                    String hora = " -> " + timePicker.getCurrentHour() + ":" + timePicker.getCurrentMinute();
                     String genero = "";
+                    String saludo = "";
+
+                    if (bHola.isChecked()) {
+                        saludo = "Hola ";
+                    } else if (bAdios.isChecked()) {
+                        saludo = "Adios ";
+
+                    }
+
                     if (bSr.isChecked()) {
                         genero = "Sr. ";
                     } else if (bSra.isChecked()) {
                         genero = "Sra. ";
 
                     }
-                    tvSalida.setText(genero + etNombre.getText().toString() + fecha + hora);
+                    tvSalida.setText(saludo + genero + etNombre.getText().toString() + fecha + hora);
                 } else if (!bSr.isChecked() && !bSra.isChecked()) {
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                     builder.setTitle("Error");
                     builder.setMessage("Elige Sr o Sra");
-                    builder.setPositiveButton("Sr",new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton("Sr", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             bSr.setChecked(true);
                         }
                     });
-                    builder.setNegativeButton("Sra",new DialogInterface.OnClickListener() {
+                    builder.setNegativeButton("Sra", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             bSra.setChecked(true);
@@ -91,6 +104,27 @@ public class MainActivity extends Activity {
 
                     AlertDialog dialog = builder.create();
                     dialog.show();
+                } else if (!bHola.isChecked() && !bAdios.isChecked()) {
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setTitle("Error");
+                    builder.setMessage("Elige Hola o Adios");
+                    builder.setPositiveButton("HOLA", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            bHola.setChecked(true);
+                        }
+                    });
+                    builder.setNegativeButton("ADIOS", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            bAdios.setChecked(true);
+                        }
+                    });
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
                 } else {
                     Toast.makeText(getApplicationContext(), "Nombre Vacio", Toast.LENGTH_SHORT).show();
                 }

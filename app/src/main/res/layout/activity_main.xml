@@ -31,7 +31,32 @@
                 android:ems="10"
                 android:id="@+id/etNombre" />
         </LinearLayout>
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Hola o Adios?"
+                android:id="@+id/textView" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hola..."
+                android:id="@+id/rbHola"
+                android:checked="false" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Adios..."
+                android:id="@+id/rbAdios"
+                android:checked="false" />
+
+        </RadioGroup>
         <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
