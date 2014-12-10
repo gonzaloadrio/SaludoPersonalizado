@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
         datePicker = (DatePicker) findViewById(R.id.datePicker);
         cbVerFecha = (CheckBox) findViewById(R.id.cbFecha);
         enviar = (Button) findViewById(R.id.bEnviar);
-        scrollView = (ScrollView) findViewById(R.id.horizontalScrollView);
+        scrollView = (ScrollView) findViewById(R.id.scrollView);
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
 
         cbVerFecha.setOnClickListener(new View.OnClickListener() {
