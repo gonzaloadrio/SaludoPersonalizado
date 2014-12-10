@@ -13,6 +13,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 
@@ -23,6 +24,7 @@ public class MainActivity extends Activity {
     RadioButton bSr, bSra;
     TextView tvSalida;
     DatePicker datePicker;
+    TimePicker timePicker;
     Button enviar;
     CheckBox cbVerFecha;
     ScrollView scrollView;
@@ -38,6 +40,7 @@ public class MainActivity extends Activity {
         bSra = (RadioButton) findViewById(R.id.rbSra);
         tvSalida = (TextView) findViewById(R.id.tvSalida);
         datePicker = (DatePicker) findViewById(R.id.datePicker);
+        timePicker = (TimePicker) findViewById(R.id.timePicker);
         cbVerFecha = (CheckBox) findViewById(R.id.cbFecha);
         enviar = (Button) findViewById(R.id.bEnviar);
         scrollView = (ScrollView) findViewById(R.id.scrollView);
@@ -59,6 +62,7 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 if (!etNombre.getText().toString().equals("")) {
                     String fecha = ": " + datePicker.getDayOfMonth() + " - " + datePicker.getMonth() + " - " + datePicker.getYear();
+                    String hora = " -> " + timePicker.getCurrentHour() + ":" +timePicker.getCurrentMinute();
                     String genero = "";
                     if (bSr.isChecked()) {
                         genero = "Sr. ";
@@ -66,7 +70,7 @@ public class MainActivity extends Activity {
                         genero = "Sra. ";
 
                     }
-                    tvSalida.setText(genero + etNombre.getText().toString() + fecha);
+                    tvSalida.setText(genero + etNombre.getText().toString() + fecha + hora);
                 } else if (!bSr.isChecked() && !bSra.isChecked()) {
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
